@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Zero-Day Attack Prediction Simulator</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <canvas id="bgCanvas" aria-hidden="true"></canvas>
+    <div class="app">
+      <header class="topbar">
+        <div>
+          <h1 data-i18n="app.title">Zero-Day Attack Prediction Simulator</h1>
+          <p data-i18n="app.subtitle">Behavioral Anomaly Monitoring System</p>
+          <p class="intro" data-i18n="app.intro">
+            This simulator demonstrates how behavioral anomaly detection can signal potential zero-day
+            attacks for a monitored site or server.
+          </p>
+        </div>
+        <div class="top-actions">
+          <div class="lang-switch" role="group" aria-label="Language switcher">
+            <button class="lang-btn active" data-lang="tm" type="button">TM</button>
+            <button class="lang-btn" data-lang="ru" type="button">RU</button>
+            <button class="lang-btn" data-lang="en" type="button">EN</button>
+          </div>
+          <nav class="nav">
+            <button class="nav-btn" data-i18n="nav.dashboard" type="button">Dashboard</button>
+            <button class="nav-btn" data-i18n="nav.simulations" type="button">Simulations</button>
+            <button class="nav-btn" data-i18n="nav.logs" type="button">Logs</button>
+          </nav>
+        </div>
+      </header>
+
+      <main class="grid">
+        <section class="cards">
+          <div class="card metric">
+            <div class="label" data-i18n="metrics.threat">Threat Level</div>
+            <div class="value" id="threatLevel" data-i18n="threat.normal">Normal</div>
+          </div>
+          <div class="card metric">
+            <div class="label" data-i18n="metrics.risk">Risk Score</div>
+            <div class="value"><span id="riskScore">12</span><span class="unit">%</span></div>
+          </div>
+          <div class="card metric">
+            <div class="label" data-i18n="metrics.confidence">Detection Confidence</div>
+            <div class="value"><span id="aiConfidence">86</span><span class="unit">%</span></div>
+          </div>
+          <div class="card metric">
+            <div class="label" data-i18n="metrics.status">System Status</div>
+            <div class="value" id="systemStatus" data-i18n="status.stable">Stable</div>
+          </div>
+        </section>
+
+        <section class="card chart-card">
+          <div class="section-title">
+            <span data-i18n="sections.network">Network Activity</span>
+            <span class="user-count"><span data-i18n="users.label">Users online</span>: <strong id="userCount">124</strong></span>
+          </div>
+          <div class="chart-alert" id="chartAlert" aria-live="polite">
+            <div class="chart-alert-title" data-i18n="alert.title">Attention</div>
+            <div class="chart-alert-text" data-i18n="alert.text">Unusual traffic spike detected.</div>
+          </div>
+          <canvas id="activityChart"></canvas>
+        </section>
+
+        <section class="card control-card">
+          <div class="section-title" data-i18n="sections.controls">Simulation Control Panel</div>
+          <div class="controls">
+            <button class="control-btn" data-mode="normal" data-i18n="controls.normal" type="button">
+              Normal Environment
+            </button>
+            <button class="control-btn" data-mode="suspicious" data-i18n="controls.suspicious" type="button">
+              Suspicious Behavior
+            </button>
+            <button class="control-btn" data-mode="zeroday" data-i18n="controls.zeroday" type="button">
+              Zero-Day Scenario
+            </button>
+            <button class="control-btn ghost" data-mode="reset" data-i18n="controls.reset" type="button">
+              Reset
+            </button>
+          </div>
+
+          <div class="hint" id="hintPanel">
+            <div class="hint-title" data-i18n="hint.title">Live Hint</div>
+            <p id="hintText" data-i18n="hint.normal">Network behavior aligns with baseline patterns.</p>
+          </div>
+
+          <div class="ai-status" id="aiStatus" data-i18n="monitor.status1">Monitoring traffic flow...</div>
+        </section>
+
+        <section class="card log-card">
+          <div class="section-title" data-i18n="sections.timeline">Timeline Log</div>
+          <div class="log-table">
+            <div class="log-header">
+              <span data-i18n="log.timestamp">Timestamp</span>
+              <span data-i18n="log.event">Event</span>
+              <span data-i18n="log.risk">Risk Level</span>
+            </div>
+            <div id="logBody" class="log-body"></div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer" data-i18n="footer.disclaimer">
+        Educational simulation platform demonstrating AI-based anomaly detection for cybersecurity research purposes.
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
